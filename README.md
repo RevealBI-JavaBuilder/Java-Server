@@ -5,24 +5,11 @@ In your terminal:
 
 `mvnw spring-boot:run` 
 
-### **Core File**
-There are 2 files that make up this sample:
-
-- `DomController` class is the code that parses the RDASH files and returns a JSON list to the client app.
-- `VisualizationChartInfo` class is the model class that represents a Visualization.
-
-### **Core Files**
-There are 2 files that make up this sample:
-
-- [`DomController.java`](https://github.com/your-repo/your-project/blob/main/DomController.java): The class that parses the `.rdash` files and returns a JSON list to the client app.
-- [`VisualizationChartInfo.java`](https://github.com/your-repo/your-project/blob/main/VisualizationChartInfo.java): The model class that represents a Visualization.
-
-
 ### **Core Files**
 There are 2 files that make up this sample:
 
 - [`DomController.java`](DomController.java): The class that parses the `.rdash` files and returns a JSON list to the client app.
-- [`VisualizationChartInfo.java`](https://github.com/your-repo/your-project/blob/main/VisualizationChartInfo.java): The model class that represents a Visualization.
+- [`VisualizationChartInfo.java`](VisualizationChartInfo.java): The model class that represents a Visualization.
 
 
 ### **DomController Class**
