@@ -115,6 +115,3 @@ Assumes the existence of the following class:
 5. **RESTful Design**:
    - Simplifies integration with frontend or other services by providing structured JSON data.
 
----
-
-This documentation provides a comprehensive overview of the `DomController` class and its functionality for working with `.rdash` dashboard files. If you need further details, such as example responses or additional classes, feel free to ask!
