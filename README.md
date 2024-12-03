@@ -6,14 +6,16 @@ In your terminal:
 `mvnw spring-boot:run` 
 
 ### **Core Files**
-There are 2 files that make up this sample:
+There are several files that make up this sample:
 
 - [`DomController.java`](DomController.java): The class that parses the `.rdash` files and returns a JSON list to the client app.
 - [`VisualizationChartInfo.java`](VisualizationChartInfo.java): The model class that represents a Visualization.
+- [`DashboardNameInfo.java`](DashboardNameInfo.java): The model class that represents the simplified dashboard information.
 
+---
 
 ### **DomController Class**
-The `DomController` class is a JAX-RS-based RESTful controller that exposes an endpoint to retrieve visualizations from `.rdash` dashboard files. It processes the dashboards to extract widget information and format it into a JSON response.
+The `DomController` class is a JAX-RS-based RESTful controller that exposes endpoints to retrieve visualizations and dashboard names from `.rdash` files. It processes the dashboards to extract relevant information and format it into JSON responses.
 
 #### **Imports**
 - **Core Java Libraries**: Used for file handling (`File`), I/O operations (`BufferedReader`, `InputStream`), and handling ZIP files.
@@ -33,7 +35,11 @@ Defines the base path for all endpoints in this controller.
 - **Response Format**: `application/json`
 - **Description**: Retrieves all visualizations from `.rdash` files stored in the `dashboards` folder.
 
-<img width="504" alt="image" src="https://github.com/user-attachments/assets/243815c3-eae5-4c1b-af01-312508357e1f">
+#### **`/names`**
+- **HTTP Method**: `GET`
+- **Path**: `/names`
+- **Response Format**: `application/json`
+- **Description**: Retrieves the names and titles of all dashboards from `.rdash` files stored in the `dashboards` folder.
 
 ---
 
@@ -46,6 +52,16 @@ Defines the base path for all endpoints in this controller.
   2. Reads each `.rdash` file as a ZIP archive to find and extract its `.json` content.
   3. Parses the extracted JSON to retrieve dashboard and widget information.
   4. Formats the data into `VisualizationChartInfo` objects.
+
+---
+
+#### **`getDashboardNames()`**
+- **Purpose**: Retrieves the names and titles of all dashboards.
+- **Steps**:
+  1. Scans the `dashboards` folder for `.rdash` files.
+  2. Reads each `.rdash` file as a ZIP archive to find and extract its `.json` content.
+  3. Parses the extracted JSON to retrieve the dashboard `Title`.
+  4. Formats the data into `DashboardNameInfo` objects.
 
 ---
 
@@ -85,7 +101,7 @@ Defines the base path for all endpoints in this controller.
 ---
 
 ### **Supporting Classes**
-Assumes the existence of the following class:
+The project includes the following supporting classes:
 
 #### **`VisualizationChartInfo`**
 - **Purpose**: Represents information about a single visualization chart.
@@ -99,9 +115,17 @@ Assumes the existence of the following class:
 
 ---
 
+#### **`DashboardNameInfo`**
+- **Purpose**: Represents simplified information about a dashboard.
+- **Fields**:
+  - `dashboardFileName`: The name of the dashboard file.
+  - `dashboardTitle`: The title of the dashboard.
+
+---
+
 ### **Key Features**
 1. **Dynamic Parsing**:
-   - Automatically discovers `.rdash` files and extracts their visualization data without hardcoding file paths.
+   - Automatically discovers `.rdash` files and extracts their visualization and name data without hardcoding file paths.
    
 2. **Flexible Chart Type Handling**:
    - Supports multiple visualization types with fallbacks for unknown types.
@@ -110,8 +134,7 @@ Assumes the existence of the following class:
    - Logs errors when `.rdash` files are missing or malformed JSON is encountered.
 
 4. **Extensibility**:
-   - Easily extendable to handle additional visualization settings or customization.
+   - Easily extendable to handle additional visualization settings, dashboard metadata, or customization.
 
 5. **RESTful Design**:
    - Simplifies integration with frontend or other services by providing structured JSON data.
-
